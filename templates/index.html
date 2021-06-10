@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Federated Learning</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.8.8/brython.js" integrity="sha256-rA89wPrTJJQFWJaZveKW8jpdmC3t5F9rRkPyBjz8G04=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.8.8/brython_stdlib.js" integrity="sha256-Gnrw9tIjrsXcZSCh/wos5Jrpn0bNVNFJuNJI9d71TDs=" crossorigin="anonymous"></script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+    ================================================== -->
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+   <link rel="stylesheet" href="static/css/default.css">
+	<link rel="stylesheet" href="static/css/layout.css">
+   <link rel="stylesheet" href="static/css/media-queries.css">
+   <link rel="stylesheet" href="static/css/magnific-popup.css">
+
+   <!-- Mobile Specific Metas
+   ================================================== -->
+
+   <!-- Script
+   ================================================== -->
+	<script src="static/js/modernizr.js"></script>
+	<link rel="shortcut icon" href="favicon.png" >
+
+</head>
+
+
+<body>
+
+	<section id="resume">
+		<div class="row education">
+			<h1>Federated Learning</h1>
+			<h1><span>Confirm</span></h1>
+			<input class="form-check" type="checkbox" name="confirm" value="1">
+
+			<p id="cpu">This is cpu usage: </p>
+			<p id="clock">Here will be date|time</p>
+
+		</div>
+
+		<script>
+		var cpu = document.getElementById("cpu");
+
+		setInterval(() => {
+			fetch("{{ url_for('cpu_feed') }}")
+			.then(response => {
+				response.text().then(t => {cpu.innerHTML = t})
+			});
+			}, 1000);
+
+		</script>
+
+		<script>
+    		var clock = document.getElementById("clock");
+
+    		setInterval(() => {
+        		fetch("{{ url_for('time_feed') }}")
+        		.then(response => {
+                	response.text().then(t => {clock.innerHTML = t})
+            	});
+        		}, 1000);
+		</script>
+
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Flask-Live-Chart</a>
+        </div>
+{#        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">#}
+{#          <ul class="nav navbar-nav">#}
+{#            <li><a href="#">A link</a></li>#}
+{#          </ul>#}
+{#        </div><!-- /.navbar-collapse -->#}
+      </div>
+    </div>
+
+    <div class="jumbotron">
+      <div class="container-fluid">
+        <br/>
+        <!--<p>Live data plotting using Flask and Highcharts.</p>-->
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <!-- Example row of columns -->
+      <div class="row">
+
+          <div class="container-fluid" id="data-container"></div>
+
+        </div>
+    </div>
+    <hr>
+
+
+		<div class="row skill">
+			<h1><span>Try your photo</span></h1>
+			<form method='post' enctype=multipart/form-data>
+				<input type="file" name="file">
+				<input type="submit" value="upload">
+			</form>
+		</div>
+
+
+
+	</section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/highcharts-more.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+    <script src="static/js/highcharts.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+
+</body>
+</html>
+
+
+
